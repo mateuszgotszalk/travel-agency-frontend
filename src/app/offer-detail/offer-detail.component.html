@@ -1,0 +1,13 @@
+<div *ngIf="offer">
+  <h5>Offer: </h5>
+  <div>
+    <div><span>Cena: </span>{{offer.price}} zł/os </div>
+    <div>{{offer.standard}}/ {{offer.kindOfApartment}} </div>
+    <div><span>Czas pobytu</span> {{offer.flight.departureDate}} - {{offer.flight.arrivalDate}}</div>
+    <div><span>Lot</span> {{offer.flight.departureAirport}} - {{offer.flight.arrivalAirport}}</div>
+    <div> {{offer.hotel.hotelName}} / {{offer.hotel.hotelCountry}} / {{offer.hotel.hotelCity}} </div>
+  </div>
+  <div>
+    <button>Rezerwuj</button>
+  </div>
+</div>
