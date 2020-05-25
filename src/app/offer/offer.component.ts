@@ -28,5 +28,4 @@ export class OfferComponent implements OnInit {
   selectOffer(offer: Offer) {
     this.selectedOffer = offer;
   }
-
 }

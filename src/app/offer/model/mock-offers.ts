@@ -1,10 +1,10 @@
-import { Offer } from './offer';
+import { Offer, Standard } from './offer';
 
 export const OFFERS: Offer[] = [
   {
     offerId: 1,
     price: 2000,
-    standard: 'AllInclusive',
+    standard: Standard.AllInclusive,
     kindOfApartment: '1pok2os',
     flight: {
       flightId: 2,
@@ -26,7 +26,7 @@ export const OFFERS: Offer[] = [
   {
     offerId: 4,
     price: 3000,
-    standard: 'AllInclusive',
+    standard: Standard.AllInclusive,
     kindOfApartment: '1pok2os',
     flight: {
       flightId: 5,
@@ -48,7 +48,7 @@ export const OFFERS: Offer[] = [
   {
     offerId: 7,
     price: 2300,
-    standard: 'HB',
+    standard: Standard.BB,
     kindOfApartment: '1pok2os',
     flight: {
       flightId: 3,

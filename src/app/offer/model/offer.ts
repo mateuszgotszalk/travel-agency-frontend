@@ -5,8 +5,15 @@ export interface Offer {
 
   offerId: number;
   price: number;
-  standard: string;
+  standard: Standard;
   kindOfApartment: string;
   flight: Flight;
   hotel: Hotel;
+}
+
+export enum Standard {
+  AllInclusive = 'AllInclusive',
+  HB = 'HB',
+  BB = 'BB',
+  WL = 'WL'
 }
