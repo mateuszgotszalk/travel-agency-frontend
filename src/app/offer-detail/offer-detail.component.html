@@ -1,3 +1,4 @@
+<button (click)="goBack()">Wróć</button>
 <div *ngIf="offer">
   <h5>Oferta: </h5>
   <div>
@@ -12,11 +13,12 @@
        <label for="peopleAmount">Ile osób ? </label>
        <input type="number"
        [(ngModel)]="peopleAmount"
-       min="1" max="6"/>
+       min="1" max="6" required/>
     </div>
     <div *ngIf="peopleAmount" >
         Całkowita cena: <span>{{peopleAmount*offer.price}}</span>
     </div>
-    <button (click)="createTripDetails()">Rezerwuj</button>
+    <button (click)="createTripDetails()" [disabled]="peopleAmount < 1 || peopleAmount > 6 || peopleAmount===undefined">Rezerwuj</button>
+    <div  *ngIf="peopleAmount < 1 || peopleAmount > 6">Ilość osób moze być od 1 do 6</div>
   </div>
 </div>

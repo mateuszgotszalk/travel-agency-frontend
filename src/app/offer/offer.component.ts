@@ -1,5 +1,4 @@
 import { OfferService } from './../services/offer.service';
-import { OFFERS } from './model/mock-offers';
 import { Component, OnInit } from '@angular/core';
 import { Offer } from './model/offer';
 
@@ -10,8 +9,6 @@ import { Offer } from './model/offer';
 })
 export class OfferComponent implements OnInit {
 
-
-  selectedOffer: Offer;
   offers: Array<Offer>;
 
   constructor(private offerService: OfferService) { }
@@ -23,9 +20,5 @@ export class OfferComponent implements OnInit {
   getOffers() {
     this.offerService.getOffers()
       .subscribe(offers => this.offers = offers);
-  }
-
-  selectOffer(offer: Offer) {
-    this.selectedOffer = offer;
   }
 }

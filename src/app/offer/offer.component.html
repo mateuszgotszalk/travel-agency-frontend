@@ -1,12 +1,12 @@
 <div>
   <ul>
     <h1>Oferty </h1>
-    <li *ngFor="let offer of offers" (click)="selectOffer(offer)">
-      Oferta: Cena-{{offer.price}}PLN {{offer.standard}}
-      ({{offer.flight.departureDate}}){{offer.flight.departureAirport}}
-      {{offer.hotel.hotelName}} / {{offer.hotel.hotelCountry}} / {{offer.hotel.hotelCity}}
+    <li *ngFor="let offer of offers">
+      <a routerLink="/offers/detail/{{offer.offerId}}">
+        Oferta: Cena-{{offer.price}}PLN {{offer.standard}} {{2+2}}
+        ({{offer.flight.departureDate}}){{offer.flight.departureAirport}}
+        {{offer.hotel.hotelName}} / {{offer.hotel.hotelCountry}} / {{offer.hotel.hotelCity}}
+      </a>
     </li>
   </ul>
 </div>
-<br>
-<app-offer-detail [offer]="selectedOffer"></app-offer-detail>

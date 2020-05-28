@@ -15,4 +15,8 @@ export class OfferService {
   getOffers(): Observable<Offer[]> {
     return of(this.offers);
   }
+
+  getOffer(id: number): Observable<Offer> {
+    return of(this.offers.find(offer => offer.offerId === id));
+  }
 }
