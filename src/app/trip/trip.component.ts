@@ -1,6 +1,7 @@
-import { PersonInput } from './../people/person-input';
+import { PersonInput, Role } from './../people/person-input';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CheckboxControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-trip',
@@ -11,7 +12,7 @@ export class TripComponent implements OnInit {
 
   peopleAmount: number;
   offerId: number;
-  peopleInput: PersonInput[] = [];
+  peopleInput: Array<PersonInput> = [];
 
   constructor(
     private route: ActivatedRoute
@@ -21,13 +22,36 @@ export class TripComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.offerId = +params['offerId'];
       this.peopleAmount = +params['peopleAmount'];
-      console.log('trip.component got a param: offerId: ' + this.offerId);
-      console.log('trip.component got a param: offerId: ' + this.peopleAmount);
+    });
+    this.peopleInput = new Array<PersonInput>(this.peopleAmount);
+    console.log('creating people');
+    this.createPeopleInput();
+  }
+
+  createPeopleInput() {
+    console.log('in method createPeople');
+    for (let i = 0; i < this.peopleInput.length; i++) {
+      this.peopleInput[i] = {
+        name: '',
+        surrName: '',
+        dateOfBirth: '',
+        role: this.checkRole(i)
+      };
+    }
+  }
+
+  checkRole(index: number): Role {
+    if (index === 0) {
+      return Role.CLIENT;
+    }
+    else {
+      return Role.PASSENGER;
+    }
+  }
+
+  createTrip() {
+    this.peopleInput.forEach(person => {
+      console.log('person ' + person.name + ' ' + person.surrName + ' ' + person.role);
     });
   }
-
-  createTripInputForm() {
-
-  }
-
 }
