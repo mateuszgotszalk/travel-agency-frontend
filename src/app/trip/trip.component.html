@@ -1,16 +1,19 @@
 <div>
   Dane do zamówienia wycieczki :
   <div *ngFor="let person of peopleInput; let i = index ">
-    <ng-container *ngIf="i===0">DANE OSOBY REZERWUJĄCEJ</ng-container>
-    <ng-container *ngIf="i === 1">POZOSTALI PASAZEROWIE</ng-container>
+    <ng-container *ngIf="i === 0">DANE OSOBY REZERWUJĄCEJ</ng-container>
+    <ng-container *ngIf="i === 1">POZOSTALI UCZESTNICY</ng-container>
     <br>
     <label for="name">Imię</label>
     <input type="text" [(ngModel)]="person.name">
+
     <label for="surName">Nazwisko</label>
     <input type="text" [(ngModel)]="person.surrName">
+
     <label for="dateOfBirth">Data urodzenia:</label>
-    <input type="text" name="dateOfBirth" placeholder="dzień"> - <input type="text" name="dateOfBirth"
-      placeholder="miesiąc"> - <input type="text" name="dateOfBirth" placeholder="rok">
+    <input type="text" name="dateOfBirth" placeholder="dd-MM-yyyy"
+     [(ngModel)]="person.dateOfBirth"
+      pattern="(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))-(?:19|20)[0-9]{2}" >
     <br>
   </div>
   <button (click)="createTrip()">Kup wycieczkę</button>

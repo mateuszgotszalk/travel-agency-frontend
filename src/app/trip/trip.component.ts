@@ -1,7 +1,6 @@
 import { PersonInput, Role } from './../people/person-input';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CheckboxControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-trip',
@@ -24,12 +23,10 @@ export class TripComponent implements OnInit {
       this.peopleAmount = +params['peopleAmount'];
     });
     this.peopleInput = new Array<PersonInput>(this.peopleAmount);
-    console.log('creating people');
     this.createPeopleInput();
   }
 
   createPeopleInput() {
-    console.log('in method createPeople');
     for (let i = 0; i < this.peopleInput.length; i++) {
       this.peopleInput[i] = {
         name: '',
@@ -50,8 +47,15 @@ export class TripComponent implements OnInit {
   }
 
   createTrip() {
+    this.checkDates();
     this.peopleInput.forEach(person => {
-      console.log('person ' + person.name + ' ' + person.surrName + ' ' + person.role);
+      console.log('person ' + person.name + ' ' + person.surrName + ' ' + person.role + ' Data uro: ' + person.dateOfBirth);
+    });
+  }
+
+  checkDates() {
+    this.peopleInput.forEach(person => {
+
     });
   }
 }
