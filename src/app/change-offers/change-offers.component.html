@@ -1,0 +1,44 @@
+<div>
+  <ul>
+    <h1>Oferty </h1>
+    <nav>
+      <a routerLink="/change-trips">Zarządzaj Wycieczkami</a>
+      <a routerLink="/change-people">Zarządzaj Osobami</a>
+    </nav>
+    <li *ngFor="let offer of offers">
+        <h5>Oferta  id: {{offer.offerId}}</h5>
+        Cena-{{offer.price}}PLN {{offer.standard}}
+        ({{offer.flight.departureDate}}){{offer.flight.departureAirport}}
+        {{offer.hotel.hotelName}} / {{offer.hotel.hotelCountry}} / {{offer.hotel.hotelCity}} <button (click)="deleteOffer(offer)">Usuń</button>
+    </li>
+  </ul>
+  <div>
+    <h3>Dodaj Ofertę</h3>
+    <label>Cena</label><input type="number" step="0.01" [(ngModel)]="newOffer.price" placeholder="cena w zł">
+    <div>
+      <label for="standard">Rodzaj Standardu</label>
+      <select [(ngModel)]="newOffer.standard" name="standard">
+        <option value="WL">WL</option>
+        <option value="BB">BB</option>
+        <option value="HB">HB</option>
+        <option value="AllInclusive">AllInclusive</option>
+      </select>
+    </div>
+    <div><label>Rodzaj Pokoju </label><input type="text" [(ngModel)]="newOffer.kindOfApartment"></div>
+
+    <div><label>Nazwa hotelu </label><input type="text" [(ngModel)]="newOffer.hotelName"></div>
+    <div><label>Kraj hotelu </label><input type="text" [(ngModel)]="newOffer.hotelCountry"></div>
+    <div><label>Miasto hotelu </label><input type="text" [(ngModel)]="newOffer.hotelCity"></div>
+
+    <div><label>Lotnisko odlotu </label><input type="text" [(ngModel)]="newOffer.departureAirport"></div>
+    <div><label>Kraj lotniska odlotu </label><input type="text" [(ngModel)]="newOffer.departureCountry"></div>
+    <div><label>Data odlotu </label><input type="text" [(ngModel)]="newOffer.departureDate"></div>
+
+    <div><label>Lotnisko przylotu </label><input type="text" [(ngModel)]="newOffer.arrivalAirport"></div>
+    <div><label>Kraj lotnika przylotu </label><input type="text" [(ngModel)]="newOffer.arrivalCountry"></div>
+    <div><label>Data przylotu</label><input type="text" [(ngModel)]="newOffer.arrivalDate"></div>
+
+    <div><label>Koszt lotu </label><input type="number" step="0.01" [(ngModel)]="newOffer.flightCost"></div>
+    <div><button (click)="addOffer()">Dodaj Ofertę</button></div>
+  </div>
+</div>

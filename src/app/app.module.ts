@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { OfferComponent } from './offer/offer.component';
 import { OfferDetailComponent } from './offer-detail/offer-detail.component';
 import { TripComponent } from './trip/trip.component';
+import { ChangeOffersComponent } from './change-offers/change-offers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OfferComponent,
     OfferDetailComponent,
-    TripComponent
+    TripComponent,
+    ChangeOffersComponent
   ],
   imports: [
     BrowserModule,

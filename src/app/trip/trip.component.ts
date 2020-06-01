@@ -1,3 +1,5 @@
+import { Location } from '@angular/common';
+import { TripInput } from './model/trip-input';
 import { PatternValidator } from '@angular/forms';
 import { PersonInput, Role } from './../people/person-input';
 import { Component, OnInit } from '@angular/core';
@@ -14,8 +16,10 @@ export class TripComponent implements OnInit {
   offerId: number;
   peopleInput: Array<PersonInput> = [];
 
+
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -52,12 +56,25 @@ export class TripComponent implements OnInit {
     this.peopleInput.forEach(person => {
       console.log('person ' + person.name + ' ' + person.surrName + ' ' + person.role + ' Data uro: ' + person.dateOfBirth);
     });
+
+    const tripInput: TripInput = {
+      salesman: 'online',
+      people: this.peopleInput,
+      offerId: this.offerId
+    };
+
+    console.log(tripInput.offerId + ' ' + tripInput.salesman);
   }
 
+  // mapping Dates to pattern dd-MM-yyyy for backend software
   mapDates() {
     this.peopleInput.forEach(person => {
       const date = person.dateOfBirth;
       person.dateOfBirth = date.slice(-2) + date.slice(4, 7) + '-' + date.slice(0, 4);
     });
+  }
+
+  goBack(){
+    this.location.back();
   }
 }

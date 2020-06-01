@@ -1,9 +1,14 @@
 <div>
   <ul>
     <h1>Oferty </h1>
+    <nav>
+      <a routerLink="/change-offers">Zarządzaj Ofertami</a>
+      <a routerLink="/change-trips">Zarządzaj Wycieczkami</a>
+      <a routerLink="/change-people">Zarządzaj Osobami</a>
+    </nav>
     <li *ngFor="let offer of offers">
       <a routerLink="/offers/detail/{{offer.offerId}}">
-        Oferta: Cena-{{offer.price}}PLN {{offer.standard}} {{2+2}}
+        Oferta: Cena-{{offer.price}}PLN {{offer.standard}}
         ({{offer.flight.departureDate}}){{offer.flight.departureAirport}}
         {{offer.hotel.hotelName}} / {{offer.hotel.hotelCountry}} / {{offer.hotel.hotelCity}}
       </a>
