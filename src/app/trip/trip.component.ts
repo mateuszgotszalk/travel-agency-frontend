@@ -1,3 +1,4 @@
+import { PatternValidator } from '@angular/forms';
 import { PersonInput, Role } from './../people/person-input';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -47,15 +48,16 @@ export class TripComponent implements OnInit {
   }
 
   createTrip() {
-    this.checkDates();
+    this.mapDates();
     this.peopleInput.forEach(person => {
       console.log('person ' + person.name + ' ' + person.surrName + ' ' + person.role + ' Data uro: ' + person.dateOfBirth);
     });
   }
 
-  checkDates() {
+  mapDates() {
     this.peopleInput.forEach(person => {
-
+      const date = person.dateOfBirth;
+      person.dateOfBirth = date.slice(-2) + date.slice(4, 7) + '-' + date.slice(0, 4);
     });
   }
 }

@@ -11,9 +11,8 @@
     <input type="text" [(ngModel)]="person.surrName">
 
     <label for="dateOfBirth">Data urodzenia:</label>
-    <input type="text" name="dateOfBirth" placeholder="dd-MM-yyyy"
-     [(ngModel)]="person.dateOfBirth"
-      pattern="(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))-(?:19|20)[0-9]{2}" >
+    <input type="date" name="dateOfBirth" placeholder="data urodzenia"
+     [(ngModel)]="person.dateOfBirth">
     <br>
   </div>
   <button (click)="createTrip()">Kup wycieczkę</button>
