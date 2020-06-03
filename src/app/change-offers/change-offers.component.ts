@@ -11,7 +11,6 @@ import { Offer, Standard } from '../offer/model/offer';
 export class ChangeOffersComponent implements OnInit {
 
   offers: Offer[] = [];
-  //standard: Standard = Standard.WL;
   newOffer: OfferInput = {
     price: 0,
     standard: Standard.WL,

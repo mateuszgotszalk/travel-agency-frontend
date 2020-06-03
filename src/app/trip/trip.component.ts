@@ -1,6 +1,5 @@
 import { Location } from '@angular/common';
 import { TripInput } from './model/trip-input';
-import { PatternValidator } from '@angular/forms';
 import { PersonInput, Role } from './../people/person-input';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
