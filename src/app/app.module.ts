@@ -8,6 +8,8 @@ import { OfferComponent } from './offer/offer.component';
 import { OfferDetailComponent } from './offer-detail/offer-detail.component';
 import { TripComponent } from './trip/trip.component';
 import { ChangeOffersComponent } from './change-offers/change-offers.component';
+import { TripManagementComponent } from './trip-management/trip-management.component';
+import { PeopleComponent } from './people/people.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ChangeOffersComponent } from './change-offers/change-offers.component';
     OfferComponent,
     OfferDetailComponent,
     TripComponent,
-    ChangeOffersComponent
+    ChangeOffersComponent,
+    TripManagementComponent,
+    PeopleComponent
   ],
   imports: [
     BrowserModule,

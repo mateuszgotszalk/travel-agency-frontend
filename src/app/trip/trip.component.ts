@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { TripInput } from './model/trip-input';
-import { PersonInput, Role } from './../people/person-input';
+import { PersonInput, Role } from '../people/models/person-input';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -23,8 +23,8 @@ export class TripComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.offerId = +params['offerId'];
-      this.peopleAmount = +params['peopleAmount'];
+      this.offerId = +params.offerId;
+      this.peopleAmount = +params.peopleAmount;
     });
     this.peopleInput = new Array<PersonInput>(this.peopleAmount);
     this.createPeopleInput();

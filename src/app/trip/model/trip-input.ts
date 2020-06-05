@@ -1,4 +1,4 @@
-import { PersonInput } from './../../people/person-input';
+import { PersonInput } from '../../people/models/person-input';
 export interface TripInput {
   salesman: string;
   people: PersonInput[];

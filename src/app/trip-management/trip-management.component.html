@@ -1,0 +1,70 @@
+<div>
+    <h1>Wycieczki </h1>
+    <nav>
+      <a routerLink="/offers">Oferty</a>
+      <a routerLink="/change-offers">Zarządzaj Ofertami</a>
+      <a routerLink="/people">Zarządzaj Osobami</a>
+    </nav>
+    <table>
+      <tr>
+        <td>ID</td> <td>Cena</td> <td>Status</td> <td>Sprzedawca</td> <td>Id oferty</td> <td>Hotel</td>
+      </tr>
+      <tr *ngFor="let trip of trips" (click)="onSelect(trip)">
+          <td>{{trip.tripId}}</td>
+          <td>{{trip.totalCost}}</td>
+          <td>{{trip.status}}</td>
+          <td>{{trip.salesman}}</td>
+          <td>{{trip.offer.offerId}}</td>
+          <td>{{trip.offer.hotel.hotelName}}</td>
+      </tr>
+    </table>
+    <div *ngIf="selectedTrip" >
+      <h3>Szczegóły wycieczki {{selectedTrip.tripId.toString() | uppercase}}</h3>
+      <table>
+        <tr>
+          <td>ID: </td> <td>{{selectedTrip.tripId}}</td>
+        </tr>
+        <tr>
+          <td>Cena: </td> <td>{{selectedTrip.totalCost}}</td>
+        </tr>
+        <tr>
+          <td>Sprzedawca: </td> <td>{{selectedTrip.salesman}}</td>
+        </tr>
+        <tr>
+          <td>Status: </td> <td>{{selectedTrip.status}}</td>
+        </tr>
+        <tr>
+          <td>Pasazerowie: </td>
+           <td>
+             <tr *ngFor="let person of selectedTrip.people" >
+                {{person.role}} {{person.name}} {{person.surrName}} {{person.dateOfBirth}}
+             </tr>
+          </td>
+        </tr>
+        <tr>
+          <td>Oferta: </td> <td>{{selectedTrip.offer.offerId}}</td>
+        </tr>
+        <tr>
+          <td>Cena Oferty: </td> <td>{{selectedTrip.offer.price}}</td>
+        </tr>
+        <tr>
+          <td>Standard: </td> <td>{{selectedTrip.offer.standard}}</td>
+        </tr>
+        <tr>
+          <td>Rodzaj Pokoju: </td> <td>{{selectedTrip.offer.kindOfApartment}}</td>
+        </tr>
+        <tr>
+          <td>Lot: </td> <td>{{selectedTrip.offer.flight.departureCountry}}/{{selectedTrip.offer.flight.departureAirport}} do {{selectedTrip.offer.flight.arrivalCountry}}/{{selectedTrip.offer.flight.arrivalAirport}}</td>
+        </tr>
+        <tr>
+          <td>Czas pobytu: </td> <td>{{selectedTrip.offer.flight.departureDate}}/{{selectedTrip.offer.flight.arrivalDate}}</td>
+        </tr>
+        <tr>
+          <td>Koszt lotu: </td> <td>{{selectedTrip.offer.flight.flightCost}}</td>
+        </tr>
+        <tr>
+          <td>Miejsce pobytu: </td> <td>{{selectedTrip.offer.hotel.hotelCountry}}/{{selectedTrip.offer.hotel.hotelCity}}/{{selectedTrip.offer.hotel.hotelName}}</td>
+        </tr>
+      </table>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div>
+  <ul>
+    <h1>Osoby </h1>
+    <nav>
+      <a routerLink="/offers">Oferty</a>
+      <a routerLink="/change-offers">Zarządzaj Ofertami</a>
+      <a routerLink="/trips">Zarządzaj Wycieczkami</a>
+    </nav>
+    <li *ngFor="let person of people">
+        <div>Imie i Nazwisko: {{person.name}} {{person.surrName}}</div>
+        <div>Data urodzenia: {{person.dateOfBirth}}</div>
+        <div> Wycieczki:
+          <div *ngFor="let trip of person.trips_DTO" >
+            ID: {{trip.tripId}}   Koszt: {{trip.totalCost}}zł   Status: {{trip.status}} Sprzedawca: {{trip.salesman}}
+          </div>
+        </div>
+    </li>
+  </ul>
+</div>
+
