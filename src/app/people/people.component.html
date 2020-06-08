@@ -6,7 +6,13 @@
       <a routerLink="/change-offers">Zarządzaj Ofertami</a>
       <a routerLink="/trips">Zarządzaj Wycieczkami</a>
     </nav>
-    <li *ngFor="let person of people">
+    <div>
+      <input type="text"
+      name="search"
+      [(ngModel)]="searchPerson"
+      placeholder="Wyszukaj">
+    </div>
+    <li *ngFor="let person of people | filterPerson:searchPerson">
         <div>Imie i Nazwisko: {{person.name}} {{person.surrName}}</div>
         <div>Data urodzenia: {{person.dateOfBirth}}</div>
         <div> Wycieczki:
@@ -17,4 +23,3 @@
     </li>
   </ul>
 </div>
-

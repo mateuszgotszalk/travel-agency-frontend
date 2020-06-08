@@ -10,6 +10,7 @@ import { Offer } from './model/offer';
 export class OfferComponent implements OnInit {
 
   offers: Array<Offer>;
+  searchOffer: string;
 
   constructor(private offerService: OfferService) { }
 

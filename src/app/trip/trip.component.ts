@@ -62,7 +62,6 @@ export class TripComponent implements OnInit {
       offerId: this.offerId
     };
 
-    console.log(tripInput.offerId + ' ' + tripInput.salesman);
   }
 
   // mapping Dates to pattern dd-MM-yyyy for backend software

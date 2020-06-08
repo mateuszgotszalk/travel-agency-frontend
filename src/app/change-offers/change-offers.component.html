@@ -6,11 +6,17 @@
       <a routerLink="/trips">Zarządzaj Wycieczkami</a>
       <a routerLink="/people">Zarządzaj Osobami</a>
     </nav>
-    <li *ngFor="let offer of offers">
+    <div>
+      <input type="text"
+      name="search"
+      [(ngModel)]="searchOffer"
+      placeholder="Wyszukaj">
+    </div>
+    <li *ngFor="let offer of offers | filter:searchOffer">
         <h5>Oferta  id: {{offer.offerId}}</h5>
         Cena-{{offer.price}}PLN {{offer.standard}}
-        ({{offer.flight.departureDate}}){{offer.flight.departureAirport}}
-        {{offer.hotel.hotelName}} / {{offer.hotel.hotelCountry}} / {{offer.hotel.hotelCity}} <button (click)="deleteOffer(offer)">Usuń</button>
+        ({{offer.flight.departureDate}}){{offer.flight.departureAirport}} - ({{offer.flight.arrivalDate}}){{offer.flight.arrivalAirport}}
+        {{offer.hotel.hotelName}} / {{offer.hotel.hotelCountry}} / {{offer.hotel.hotelCity}} <button (click)="deleteOffer(offer.offerId)">Usuń</button>
     </li>
   </ul>
   <div>

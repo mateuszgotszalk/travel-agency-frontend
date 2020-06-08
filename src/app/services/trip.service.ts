@@ -1,0 +1,40 @@
+import { Status } from './../trip-management/model/trip';
+import { TripInput } from './../trip/model/trip-input';
+import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Trip } from '../trip-management/model/trip';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TripService {
+
+  httpHeaders: HttpHeaders = new HttpHeaders()
+    .set('Access-Control-Allow-Origin', '*')
+    .set('content-type', 'application/json')
+    .set('Accept', '*/*');
+  URL = 'http://localhost:6601/trip/';
+
+  constructor(private http: HttpClient) { }
+
+  getTrips(): Observable<Trip[]> {
+    return this.http.get<Trip[]>(this.URL + 'getTrips', { headers: this.httpHeaders });
+  }
+
+  getTrip(id: number): Observable<Trip> {
+    return this.http.get<Trip>(this.URL + 'getTrip/' + id, { headers: this.httpHeaders });
+  }
+
+  addTrip(trip: TripInput): Observable<any> {
+    return this.http.post(this.URL + 'addTrip', trip, { headers: this.httpHeaders });
+  }
+
+  deleteTrip(id: number): Observable<any> {
+    return this.http.delete(this.URL + 'deleteTrip/' + id, { headers: this.httpHeaders });
+  }
+
+  changeStatus(id: number, status: Status): Observable<any> {
+    return this.http.put(this.URL + 'changeStatus/' + id, status, { headers: this.httpHeaders });
+  }
+}

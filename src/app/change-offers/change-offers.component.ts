@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { OfferInput } from './../offer/model/offer-input';
 import { OfferService } from './../services/offer.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,7 @@ import { Offer, Standard } from '../offer/model/offer';
 })
 export class ChangeOffersComponent implements OnInit {
 
-  offers: Offer[] = [];
+  offers: Offer[];
   newOffer: OfferInput = {
     price: 0,
     standard: Standard.WL,
@@ -26,6 +27,7 @@ export class ChangeOffersComponent implements OnInit {
     arrivalDate: '',
     flightCost: 0
   };
+  searchOffer: string;
 
   constructor(private offerService: OfferService) { }
 
@@ -34,18 +36,16 @@ export class ChangeOffersComponent implements OnInit {
       .subscribe(offers => this.offers = offers);
   }
 
-  deleteOffer(offer: Offer){
-
+  deleteOffer(offerId: number){
+    this.offerService.deleteOffer(offerId).subscribe(res => {
+      location.reload();
+    });
   }
 
   addOffer(){
-    console.log('price:' + this.newOffer.price);
-    console.log('standard:' + this.newOffer.standard);
-    console.log('kindOfApartment:' + this.newOffer.kindOfApartment);
-    console.log('hotelName:' + this.newOffer.hotelName);
-    console.log('hotelCountry:' + this.newOffer.hotelCountry);
-    console.log('price:' + this.newOffer.price);
-    console.log('price:' + this.newOffer.price);
+    this.offerService.addOffer(this.newOffer).subscribe(res => {
+      location.reload();
+    });
   }
 
 }

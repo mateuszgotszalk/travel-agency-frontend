@@ -12,7 +12,6 @@ import { Location } from '@angular/common';
 export class OfferDetailComponent implements OnInit {
 
   offer: Offer;
-
   peopleAmount: number;
 
   constructor(

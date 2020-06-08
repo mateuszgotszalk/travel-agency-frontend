@@ -12,16 +12,17 @@ export class PeopleComponent implements OnInit {
 
   people: PersonOutput[] = [{
     name: 'Name1',
-  surrName: 'Surname1',
-  dateOfBirth: '19-11-1995',
-  role: Role.CLIENT,
-  trips_DTO: [{
-    tripId: 12344,
-  totalCost: 3499,
-  salesman: 'online',
-  status: Status.OPLACONA
-  }]
+    surrName: 'Surname1',
+    dateOfBirth: '19-11-1995',
+    role: Role.CLIENT,
+    trips_DTO: [{
+      tripId: 12344,
+      totalCost: 3499,
+      salesman: 'online',
+      status: Status.OPLACONA
+    }]
   }];
+  searchPerson: string;
 
   constructor() { }
 

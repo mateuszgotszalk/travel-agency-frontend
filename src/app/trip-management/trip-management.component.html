@@ -5,11 +5,17 @@
       <a routerLink="/change-offers">Zarządzaj Ofertami</a>
       <a routerLink="/people">Zarządzaj Osobami</a>
     </nav>
+    <div>
+      <input type="text"
+      name="search"
+      [(ngModel)]="searchTrip"
+      placeholder="Wyszukaj">
+    </div>
     <table>
       <tr>
         <td>ID</td> <td>Cena</td> <td>Status</td> <td>Sprzedawca</td> <td>Id oferty</td> <td>Hotel</td>
       </tr>
-      <tr *ngFor="let trip of trips" (click)="onSelect(trip)">
+      <tr *ngFor="let trip of trips  | filterTrip:searchTrip" (click)="onSelect(trip)">
           <td>{{trip.tripId}}</td>
           <td>{{trip.totalCost}}</td>
           <td>{{trip.status}}</td>

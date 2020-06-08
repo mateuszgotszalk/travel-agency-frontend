@@ -10,6 +10,10 @@ import { TripComponent } from './trip/trip.component';
 import { ChangeOffersComponent } from './change-offers/change-offers.component';
 import { TripManagementComponent } from './trip-management/trip-management.component';
 import { PeopleComponent } from './people/people.component';
+import { FilterPipe } from './filter.pipe';
+import { FilterPersonPipe } from './filter-person.pipe';
+import { FilterTripPipe } from './filter-trip.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,12 +23,16 @@ import { PeopleComponent } from './people/people.component';
     TripComponent,
     ChangeOffersComponent,
     TripManagementComponent,
-    PeopleComponent
+    PeopleComponent,
+    FilterPipe,
+    FilterPersonPipe,
+    FilterTripPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,7 +12,7 @@ export class TripManagementComponent implements OnInit {
 
   trips: Array<Trip> = [];
   selectedTrip: Trip;
-
+  searchTrip: string;
   constructor() { }
 
   ngOnInit(): void {
