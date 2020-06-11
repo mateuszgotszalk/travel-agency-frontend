@@ -19,6 +19,8 @@
     </div>
     <button type="submit" [disabled]="tripInputForm.form.invalid">Kup Wycieczkę</button>
     <br>
-    <button (click)="goBack()">Wróć</button>
+
+    <div *ngIf="trip">Utworzono: {{trip.tripId}} Status: {{trip.status}} Koszt: {{trip.totalCost}}zł </div>
   </div>
 </form>
+<button (click)="goBack()">Wróć</button>

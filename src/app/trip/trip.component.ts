@@ -1,3 +1,5 @@
+import { Trip } from './../trip-management/model/trip';
+import { TripService } from './../services/trip.service';
 import { Location } from '@angular/common';
 import { TripInput } from './model/trip-input';
 import { PersonInput, Role } from '../people/models/person-input';
@@ -14,11 +16,13 @@ export class TripComponent implements OnInit {
   peopleAmount: number;
   offerId: number;
   peopleInput: Array<PersonInput> = [];
+  trip: Trip;
 
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private tripService: TripService
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +66,10 @@ export class TripComponent implements OnInit {
       offerId: this.offerId
     };
 
+    this.tripService.addTrip(tripInput)
+      .subscribe(res => {
+        this.trip = res;
+      });
   }
 
   // mapping Dates to pattern dd-MM-yyyy for backend software
@@ -72,7 +80,7 @@ export class TripComponent implements OnInit {
     });
   }
 
-  goBack(){
+  goBack() {
     this.location.back();
   }
 }

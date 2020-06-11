@@ -1,3 +1,4 @@
+import { PersonService } from './../services/person.service';
 import { PersonOutput } from './models/person-output';
 import { Component, OnInit } from '@angular/core';
 import { Role } from './models/person-input';
@@ -10,23 +11,20 @@ import { Status } from '../trip-management/model/trip';
 })
 export class PeopleComponent implements OnInit {
 
-  people: PersonOutput[] = [{
-    name: 'Name1',
-    surrName: 'Surname1',
-    dateOfBirth: '19-11-1995',
-    role: Role.CLIENT,
-    trips_DTO: [{
-      tripId: 12344,
-      totalCost: 3499,
-      salesman: 'online',
-      status: Status.OPLACONA
-    }]
-  }];
+  people: PersonOutput[] = [];
   searchPerson: string;
 
-  constructor() { }
+  constructor(private personService: PersonService) { }
 
   ngOnInit(): void {
+    this.getPeople();
+  }
+
+  getPeople() {
+    this.personService.getPeople()
+      .subscribe(people => this.people = people
+        .filter(person => person.role === Role.CLIENT));
+    console.log('getPeople');
   }
 
 }

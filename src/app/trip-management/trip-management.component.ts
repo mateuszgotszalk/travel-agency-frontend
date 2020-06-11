@@ -1,3 +1,4 @@
+import { TripService } from './../services/trip.service';
 import { OFFERS } from './../offer/model/mock-offers';
 import { Component, OnInit } from '@angular/core';
 import { Trip, Status } from './model/trip';
@@ -13,43 +14,24 @@ export class TripManagementComponent implements OnInit {
   trips: Array<Trip> = [];
   selectedTrip: Trip;
   searchTrip: string;
-  constructor() { }
+  constructor(private tripService: TripService) { }
 
   ngOnInit(): void {
-    // TODO trip service for get trips
     this.getTrips();
   }
 
   getTrips() {
-    this.trips.push({
-      tripId: 0,
-      totalCost: 3000,
-      salesman: 'online',
-      status: Status.W_TRAKCIE,
-      people: [{
-        personId: 10,
-        name: 'MockName',
-        surrName: 'MockSurName',
-        dateOfBirth: '19-11-1995',
-        role: Role.CLIENT
-      },
-      {
-        personId: 11,
-        name: 'MockName1',
-        surrName: 'MockSurName1',
-        dateOfBirth: '19-11-1996',
-        role: Role.PASSENGER
-      }],
-      offer: OFFERS[0]
-    });
+    this.tripService.getTrips().subscribe(trips => this.trips = trips);
   }
 
   deleteTrip() {
-
+    this.tripService.deleteTrip(this.selectedTrip.tripId).subscribe(res => {
+      location.reload();
+    });
   }
 
-  changeStatus() {
-
+  changeStatus(status: Status) {
+    this.tripService.changeStatus(this.selectedTrip.tripId, status).subscribe();
   }
 
   onSelect(trip: Trip) {

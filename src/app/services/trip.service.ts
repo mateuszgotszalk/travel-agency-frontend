@@ -1,8 +1,7 @@
-import { Status } from './../trip-management/model/trip';
+import { Status, Trip } from './../trip-management/model/trip';
 import { TripInput } from './../trip/model/trip-input';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Trip } from '../trip-management/model/trip';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -26,8 +25,8 @@ export class TripService {
     return this.http.get<Trip>(this.URL + 'getTrip/' + id, { headers: this.httpHeaders });
   }
 
-  addTrip(trip: TripInput): Observable<any> {
-    return this.http.post(this.URL + 'addTrip', trip, { headers: this.httpHeaders });
+  addTrip(trip: TripInput): Observable<Trip> {
+    return this.http.post<Trip>(this.URL + 'addTrip', trip, { headers: this.httpHeaders });
   }
 
   deleteTrip(id: number): Observable<any> {
@@ -35,6 +34,7 @@ export class TripService {
   }
 
   changeStatus(id: number, status: Status): Observable<any> {
-    return this.http.put(this.URL + 'changeStatus/' + id, status, { headers: this.httpHeaders });
+    const body = '"' + status.toString() + '"';
+    return this.http.put(this.URL + 'changeStatus/' + id, body, { headers: this.httpHeaders });
   }
 }

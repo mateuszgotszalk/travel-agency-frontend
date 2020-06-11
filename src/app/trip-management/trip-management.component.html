@@ -37,7 +37,17 @@
           <td>Sprzedawca: </td> <td>{{selectedTrip.salesman}}</td>
         </tr>
         <tr>
-          <td>Status: </td> <td>{{selectedTrip.status}}</td>
+          <td>Status: </td>
+          <td>
+            <select [(ngModel)]="selectedTrip.status" name="status">
+              <option value="UTWORZONA">UTWORZONA</option>
+              <option value="OPLACONA">OPLACONA</option>
+              <option value="W_TRAKCIE">W_TRAKCIE</option>
+              <option value="ZAKONCZONA">ZAKONCZONA</option>
+              <option value="ANULOWANA">ANULOWANA</option>
+            </select>
+            <!-- {{selectedTrip.status}} -->
+          </td>
         </tr>
         <tr>
           <td>Pasazerowie: </td>
@@ -72,5 +82,9 @@
           <td>Miejsce pobytu: </td> <td>{{selectedTrip.offer.hotel.hotelCountry}}/{{selectedTrip.offer.hotel.hotelCity}}/{{selectedTrip.offer.hotel.hotelName}}</td>
         </tr>
       </table>
+      <div>
+        <button (click)="changeStatus(selectedTrip.status)" >Zmień Status</button>
+        <button (click)="deleteTrip()">Usuń</button>
+      </div>
     </div>
 </div>

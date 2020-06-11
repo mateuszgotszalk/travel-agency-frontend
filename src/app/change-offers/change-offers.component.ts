@@ -47,5 +47,4 @@ export class ChangeOffersComponent implements OnInit {
       location.reload();
     });
   }
-
 }
