@@ -1,25 +1,24 @@
 <div>
-  <ul>
-    <h1>Oferty </h1>
-    <div>
-      <nav>
-        <a routerLink="/change-offers">Zarządzaj Ofertami</a>
-        <a routerLink="/trips">Zarządzaj Wycieczkami</a>
-        <a routerLink="/people">Zarządzaj Osobami</a>
-      </nav>
+  <h1>Oferty </h1>
+  <div>
+    <nav>
+      <a routerLink="/change-offers"><button class="btn-nav">Zarządzaj Ofertami</button></a>
+      <a routerLink="/trips"><button class="btn-nav">Zarządzaj Wycieczkami</button></a>
+      <a routerLink="/people"><button class="btn-nav">Zarządzaj Osobami</button></a>
+    </nav>
+  </div>
+  <div>
+    <input type="text" name="search" class="search" [(ngModel)]="searchOffer" placeholder="Wyszukaj">
+  </div>
+  <div *ngFor="let offer of offers | filter:searchOffer">
+    <a routerLink="/offers/detail/{{offer.offerId}}">
+    <div class="offer">
+
+      <div style="font-size: 18px;">Oferta: Cena {{offer.price}}PLN   Standard: {{offer.standard}}</div>
+      <div style="font-size: 15px;">Wylot: {{offer.flight.departureDate}} {{offer.flight.departureAirport}}</div>
+      <div style="font-size: 15px;">Hotel: {{offer.hotel.hotelName}} / {{offer.hotel.hotelCountry}} / {{offer.hotel.hotelCity}}</div>
+
     </div>
-    <div>
-      <input type="text"
-      name="search"
-      [(ngModel)]="searchOffer"
-      placeholder="Wyszukaj">
-    </div>
-    <li *ngFor="let offer of offers | filter:searchOffer">
-      <a routerLink="/offers/detail/{{offer.offerId}}">
-        Oferta: Cena-{{offer.price}}PLN {{offer.standard}}
-        {{offer.flight.departureDate}} {{offer.flight.departureAirport}}
-        {{offer.hotel.hotelName}} / {{offer.hotel.hotelCountry}} / {{offer.hotel.hotelCity}}
-      </a>
-    </li>
-  </ul>
+    </a>
+  </div>
 </div>

@@ -31,7 +31,7 @@ export class TripManagementComponent implements OnInit {
   }
 
   changeStatus(status: Status) {
-    this.tripService.changeStatus(this.selectedTrip.tripId, status).subscribe();
+    this.tripService.changeStatus(this.selectedTrip.tripId, status).subscribe( res => location.reload());
   }
 
   onSelect(trip: Trip) {

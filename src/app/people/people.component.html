@@ -2,24 +2,22 @@
   <ul>
     <h1>Osoby </h1>
     <nav>
-      <a routerLink="/offers">Oferty</a>
-      <a routerLink="/change-offers">Zarządzaj Ofertami</a>
-      <a routerLink="/trips">Zarządzaj Wycieczkami</a>
+      <a routerLink="/offers"><button class="btn-nav">Oferty</button></a>
+      <a routerLink="/change-offers"><button class="btn-nav">Zarządzaj Ofertami</button></a>
+      <a routerLink="/trips"><button class="btn-nav">Zarządzaj Wycieczkami</button></a>
     </nav>
     <div>
-      <input type="text"
-      name="search"
-      [(ngModel)]="searchPerson"
-      placeholder="Wyszukaj">
+      <input type="text" name="search" class="search" [(ngModel)]="searchPerson" placeholder="Wyszukaj">
     </div>
-    <li *ngFor="let person of people | filterPerson:searchPerson">
-        <div>Imie i Nazwisko: {{person.name}} {{person.surrName}}</div>
-        <div>Data urodzenia: {{person.dateOfBirth}}</div>
-        <div> Wycieczki:
-          <div *ngFor="let trip of person.trips_DTO" >
-            ID: {{trip.tripId}}   Koszt: {{trip.totalCost}}zł   Status: {{trip.status}} Sprzedawca: {{trip.salesman}}
-          </div>
+
+    <li class="person" *ngFor="let person of people | filterPerson:searchPerson">
+      <div>Imie i Nazwisko: {{person.name}} {{person.surrName}}</div>
+      <div>Data urodzenia: {{person.dateOfBirth}}</div>
+      <div> Wycieczki:
+        <div class="trip" *ngFor="let trip of person.trips_DTO">
+          ID: {{trip.tripId}} Koszt: {{trip.totalCost}}zł Status: {{trip.status}} Sprzedawca: {{trip.salesman}}
         </div>
+      </div>
     </li>
   </ul>
 </div>

@@ -2,21 +2,20 @@
   <ul>
     <h1>Oferty </h1>
     <nav>
-      <a routerLink="/offers">Oferty</a>
-      <a routerLink="/trips">Zarządzaj Wycieczkami</a>
-      <a routerLink="/people">Zarządzaj Osobami</a>
+      <a routerLink="/offers"><button class="btn-nav">Oferty</button></a>
+      <a routerLink="/trips"><button class="btn-nav">Zarządzaj Wycieczkami</button></a>
+      <a routerLink="/people"><button class="btn-nav">Zarządzaj Osobami</button></a>
     </nav>
     <div>
-      <input type="text"
-      name="search"
-      [(ngModel)]="searchOffer"
-      placeholder="Wyszukaj">
+      <input type="text" name="search" class="search"  [(ngModel)]="searchOffer" placeholder="Wyszukaj">
     </div>
     <li *ngFor="let offer of offers | filter:searchOffer">
-        <h5>Oferta  id: {{offer.offerId}}</h5>
-        Cena-{{offer.price}}PLN {{offer.standard}}
-        ({{offer.flight.departureDate}}){{offer.flight.departureAirport}} - ({{offer.flight.arrivalDate}}){{offer.flight.arrivalAirport}}
-        {{offer.hotel.hotelName}} / {{offer.hotel.hotelCountry}} / {{offer.hotel.hotelCity}} <button (click)="deleteOffer(offer.offerId)">Usuń</button>
+      <h5>Oferta id: {{offer.offerId}}</h5>
+      Cena-{{offer.price}}PLN {{offer.standard}}
+      ({{offer.flight.departureDate}}){{offer.flight.departureAirport}} -
+      ({{offer.flight.arrivalDate}}){{offer.flight.arrivalAirport}}
+      {{offer.hotel.hotelName}} / {{offer.hotel.hotelCountry}} / {{offer.hotel.hotelCity}}
+      <button (click)="deleteOffer(offer.offerId)">Usuń</button>
     </li>
   </ul>
   <div>
@@ -39,11 +38,13 @@
 
     <div><label>Lotnisko odlotu </label><input type="text" [(ngModel)]="newOffer.departureAirport"></div>
     <div><label>Kraj lotniska odlotu </label><input type="text" [(ngModel)]="newOffer.departureCountry"></div>
-    <div><label>Data odlotu </label><input type="text" [(ngModel)]="newOffer.departureDate"></div>
+    <div><label>Data odlotu </label><input type="date" [(ngModel)]="newOffer.departureDate"></div>
+    <div><label>Czas odlotu </label><input type="time" [(ngModel)]="departureTime"></div>
 
     <div><label>Lotnisko przylotu </label><input type="text" [(ngModel)]="newOffer.arrivalAirport"></div>
     <div><label>Kraj lotnika przylotu </label><input type="text" [(ngModel)]="newOffer.arrivalCountry"></div>
-    <div><label>Data przylotu</label><input type="text" [(ngModel)]="newOffer.arrivalDate"></div>
+    <div><label>Data przylotu</label><input type="date" [(ngModel)]="newOffer.arrivalDate"></div>
+    <div><label>Czas przylotu </label><input type="time" [(ngModel)]="arrivalTime"></div>
 
     <div><label>Koszt lotu </label><input type="number" step="0.01" [(ngModel)]="newOffer.flightCost"></div>
     <div><button (click)="addOffer()">Dodaj Ofertę</button></div>
