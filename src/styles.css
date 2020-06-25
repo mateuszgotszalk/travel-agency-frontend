@@ -48,6 +48,20 @@ h1
   letter-spacing: 1px;
 }
 
+.btn-nav:disabled
+{
+  border-color: lightgray;
+  background-color: lightgray;
+  color: gray;
+}
+
+.btn-nav:disabled:hover
+{
+  border-color: lightgray;
+  background-color: lightgray;
+  color: gray;
+}
+
 .btn-nav:hover
 {
   background-color: #00A;

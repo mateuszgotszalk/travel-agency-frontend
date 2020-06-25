@@ -1,10 +1,10 @@
-<form (ngSubmit)="createTrip()" #tripInputForm="ngForm">
+<h3 style="text-align: center;">Dane do zamówienia wycieczki :</h3>
+<form class="form" (ngSubmit)="createTrip()" #tripInputForm="ngForm">
   <div>
-    Dane do zamówienia wycieczki :
-    <div *ngFor="let person of peopleInput; let i = index ">
+    <div  *ngFor="let person of peopleInput; let i = index ">
       <ng-container *ngIf="i === 0">DANE OSOBY REZERWUJĄCEJ</ng-container>
       <ng-container *ngIf="i === 1">POZOSTALI UCZESTNICY</ng-container>
-      <br>
+      <div>
       <label for="name">Imię</label>
       <input type="text" [(ngModel)]="person.name" #name="ngModel" required name="name{{i}}">
 
@@ -14,13 +14,15 @@
       <label for="dateOfBirth">Data urodzenia:</label>
       <input type="date" name="dateOfBirth" placeholder="data urodzenia" required [(ngModel)]="person.dateOfBirth"
         #date="ngModel" name="date{{i}}">
-      <br>
-      <div [hidden]="name.valid && surName.valid && date.valid" style="color: red;"> Person details is not valid</div>
+      <div [hidden]="name.valid && surName.valid && date.valid"
+      style="color: red; margin-bottom: 20px;"> Person details is not valid</div>
+      </div>
+
     </div>
-    <button type="submit" [disabled]="tripInputForm.form.invalid">Kup Wycieczkę</button>
+    <button type="submit" class="btn-nav" [disabled]="tripInputForm.form.invalid">Kup Wycieczkę</button>
     <br>
 
     <div *ngIf="trip">Utworzono: {{trip.tripId}} Status: {{trip.status}} Koszt: {{trip.totalCost}}zł </div>
   </div>
 </form>
-<button (click)="goBack()">Wróć</button>
+<button class="btn-nav" (click)="goBack()">Wróć</button>

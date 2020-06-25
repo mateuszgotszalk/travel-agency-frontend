@@ -1,24 +1,46 @@
-<button (click)="goBack()">Wróć</button>
 <div *ngIf="offer">
-  <h5>Oferta: </h5>
-  <div>
-    <div><span>Cena: </span>{{offer.price}} zł/os </div>
-    <div>{{offer.standard}}/ {{offer.kindOfApartment}} </div>
-    <div><span>Czas pobytu</span> wylot: {{offer.flight.departureDate}} przylot: {{offer.flight.arrivalDate}}</div>
-    <div><span>Lot</span> {{offer.flight.departureAirport}} - {{offer.flight.arrivalAirport}}</div>
-    <div> {{offer.hotel.hotelName}} / {{offer.hotel.hotelCountry}} / {{offer.hotel.hotelCity}} </div>
+  <h4>Oferta: </h4>
+  <div class="offer-details">
+    <div class="price">
+      Cena: {{offer.price}}PLN
+    </div>
+    <div class="flight">
+      <div>
+        Wylot: {{offer.flight.departureDate}}
+      </div>
+      <div>
+        {{offer.flight.departureAirport}} -> {{offer.flight.arrivalAirport}}
+      </div>
+      <div style="margin-top: 3px;">
+        Przylot: {{offer.flight.arrivalDate}}
+      </div>
+      <div>
+        {{offer.flight.arrivalAirport}} -> {{offer.flight.departureAirport}}
+      </div>
+    </div>
+    <div class="hotel">
+      <div>
+        Miejsce: {{offer.hotel.hotelName}}/ {{offer.hotel.hotelCity}} / {{offer.hotel.hotelCountry}}
+      </div>
+      <div style="margin-top: 5px; margin-bottom: 5px;">
+        Standard: {{offer.standard}}
+      </div>
+      <div>
+        Pokoj: {{offer.kindOfApartment}}
+      </div>
+    </div>
   </div>
   <div>
     <div>
-       <label for="peopleAmount">Ile osób ? </label>
-       <input type="number"
-       [(ngModel)]="peopleAmount"
-       min="1" max="6" required/>
+      <label for="peopleAmount">Ile osób ? </label>
+      <input type="number" [(ngModel)]="peopleAmount" min="1" max="6" required />
     </div>
-    <div *ngIf="peopleAmount" >
-        Całkowita cena: <span>{{peopleAmount*offer.price}}</span>
+    <div *ngIf="peopleAmount > 0">
+      Całkowita cena: <span>{{peopleAmount*offer.price}}</span>
     </div>
-    <button (click)="createTripDetails()" [disabled]="peopleAmount < 1 || peopleAmount > 6 || peopleAmount===undefined">Rezerwuj</button>
-    <div  *ngIf="peopleAmount < 1 || peopleAmount > 6">Ilość osób moze być od 1 do 6</div>
+    <button class="btn-nav" (click)="createTripDetails()"
+      [disabled]="peopleAmount < 1 || peopleAmount > 6 || peopleAmount===undefined">Rezerwuj</button>
+    <div *ngIf="peopleAmount < 1 || peopleAmount > 6">Ilość osób moze być od 1 do 6</div>
+    <button class="btn-nav" (click)="goBack()">Wróć</button>
   </div>
 </div>
