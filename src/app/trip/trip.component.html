@@ -1,28 +1,47 @@
 <h3 style="text-align: center;">Dane do zamówienia wycieczki :</h3>
-<form class="form" (ngSubmit)="createTrip()" #tripInputForm="ngForm">
-  <div>
-    <div  *ngFor="let person of peopleInput; let i = index ">
-      <ng-container *ngIf="i === 0">DANE OSOBY REZERWUJĄCEJ</ng-container>
-      <ng-container *ngIf="i === 1">POZOSTALI UCZESTNICY</ng-container>
-      <div>
-      <label for="name">Imię</label>
-      <input type="text" [(ngModel)]="person.name" #name="ngModel" required name="name{{i}}">
 
-      <label for="surName">Nazwisko</label>
-      <input type="text" [(ngModel)]="person.surrName" #surName="ngModel" required name="surName{{i}}">
+<div class="create-trip-body">
+  <form [formGroup]="tripForm" class="form" (ngSubmit)="createTrip()">
+    <div>
+      <div formArrayName="people">
+        <div *ngFor="let person of tripForm.get('people').value; let i = index; trackBy:track" [formGroupName]="i">
+          <ng-container *ngIf="i === 0">DANE OSOBY REZERWUJĄCEJ</ng-container>
+          <ng-container *ngIf="i === 1">POZOSTALI UCZESTNICY</ng-container>
+          <div>
+            <div class="inputs">
+              <label for="name">Imię</label>
+              <input type="text" [formControlName]="'name'" name="name">
+              <div class="invalid-text"
+                *ngIf="!tripForm.get('people').get(''+i).get('name').valid && tripForm.get('people').get(i+'').get('name').touched">
+                Provide a valid name
+              </div>
+            </div>
 
-      <label for="dateOfBirth">Data urodzenia:</label>
-      <input type="date" name="dateOfBirth" placeholder="data urodzenia" required [(ngModel)]="person.dateOfBirth"
-        #date="ngModel" name="date{{i}}">
-      <div [hidden]="name.valid && surName.valid && date.valid"
-      style="color: red; margin-bottom: 20px;"> Person details is not valid</div>
+            <div class="inputs">
+              <label for="surName">Nazwisko</label>
+              <input type="text" [formControlName]="'surname'" name="surName">
+              <div class="invalid-text"
+                *ngIf="!tripForm.get('people').get(''+i).get('surname').valid && tripForm.get('people').get(i+'').get('surname').touched">
+                Provide a valid surname
+              </div>
+            </div>
+
+            <div class="inputs">
+              <label for="dateOfBirth">Data urodzenia:</label>
+              <input type="date" [formControlName]="'date'" name="dateOfBirth">
+              <div class="invalid-text"
+                *ngIf="!tripForm.get('people').get(''+i).get('date').valid && tripForm.get('people').get(i+'').get('date').touched">
+                Provide a valid date
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <button type="submit" class="btn-nav" [disabled]="tripForm.invalid">Kup Wycieczkę</button>
 
+      <div *ngIf="trip" style="color: springgreen; margin-top: 10px;">Utworzono: {{trip.tripId}} Status: {{trip.status}}
+        Koszt: {{trip.totalCost}}zł </div>
     </div>
-    <button type="submit" class="btn-nav" [disabled]="tripInputForm.form.invalid">Kup Wycieczkę</button>
-    <br>
-
-    <div *ngIf="trip">Utworzono: {{trip.tripId}} Status: {{trip.status}} Koszt: {{trip.totalCost}}zł </div>
-  </div>
-</form>
-<button class="btn-nav" (click)="goBack()">Wróć</button>
+  </form>
+  <button class="btn-nav" (click)="goBack()">Wróć</button>
+</div>

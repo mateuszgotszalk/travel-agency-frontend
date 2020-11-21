@@ -5,6 +5,7 @@ import { TripInput } from './model/trip-input';
 import { PersonInput, Role } from '../people/models/person-input';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-trip',
@@ -17,7 +18,7 @@ export class TripComponent implements OnInit {
   offerId: number;
   peopleInput: Array<PersonInput> = [];
   trip: Trip;
-
+  tripForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +33,18 @@ export class TripComponent implements OnInit {
     });
     this.peopleInput = new Array<PersonInput>(this.peopleAmount);
     this.createPeopleInput();
+    const peopleForm = new FormArray([]);
+    this.peopleInput.forEach(e => {
+      peopleForm.push(new FormGroup({
+        name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        surname: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        date: new FormControl('', [Validators.required]),
+      }));
+    });
+    this.tripForm = new FormGroup({
+      people: peopleForm
+    });
+    console.log(this.tripForm.get('people').get('0').get('surname'));
   }
 
   createPeopleInput() {
@@ -55,6 +68,16 @@ export class TripComponent implements OnInit {
   }
 
   createTrip() {
+
+    for (let index = 0; index < this.peopleInput.length; index++) {
+      this.peopleInput[index] = {
+        name: this.tripForm.get('people').value[index].name,
+        surrName: this.tripForm.get('people').value[index].surname,
+        dateOfBirth: this.tripForm.get('people').value[index].date,
+        role: this.checkRole(index)
+      };
+    }
+
     this.mapDates();
     this.peopleInput.forEach(person => {
       console.log('person ' + person.name + ' ' + person.surrName + ' ' + person.role + ' Data uro: ' + person.dateOfBirth);
@@ -82,5 +105,9 @@ export class TripComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  track(index: number, obj: any): any {
+    return index;
   }
 }
