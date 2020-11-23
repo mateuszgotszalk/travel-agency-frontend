@@ -37,11 +37,17 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn-nav" [disabled]="tripForm.invalid">Kup Wycieczkę</button>
+      <div>
+        <span id="go-back">
+          <button class="btn-nav" (click)="goBack()">Wróć</button>
+        </span>
+        <span style="text-align: right;">
+          <button type="submit" class="btn-nav" [disabled]="tripForm.invalid">Kup Wycieczkę</button>
+        </span>
+      </div>
 
       <div *ngIf="trip" style="color: springgreen; margin-top: 10px;">Utworzono: {{trip.tripId}} Status: {{trip.status}}
         Koszt: {{trip.totalCost}}zł </div>
     </div>
   </form>
-  <button class="btn-nav" (click)="goBack()">Wróć</button>
 </div>

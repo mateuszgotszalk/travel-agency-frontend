@@ -71,3 +71,9 @@ input[type=text]
 input.ng-invalid.ng-touched {
   border: 2px solid rgb(235, 98, 98);
 }
+
+#go-back
+{
+  text-align: left;
+  margin-right: 71.8%;
+}

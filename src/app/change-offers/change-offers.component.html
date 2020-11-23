@@ -42,76 +42,79 @@
   </div>
 
   <h3>Dodaj Ofertę</h3>
+  <p style="text-align: center;">Wszystkie pola są wymagane</p>
   <div class="offer-form">
-    <label for="price">Cena</label>
-    <input type="number" name="price" step="0.01" min="0" [(ngModel)]="newOffer.price" placeholder="cena w PLN">
-    <div>
-      <label for="standard">Rodzaj Standardu</label>
-      <select [(ngModel)]="newOffer.standard" name="standard">
-        <option value="WL">WL</option>
-        <option value="BB">BB</option>
-        <option value="HB">HB</option>
-        <option value="AllInclusive">AllInclusive</option>
-      </select>
-    </div>
-    <div>
-      <label for="apartment">Rodzaj Pokoju </label>
-      <input type="text" name="apartment" [(ngModel)]="newOffer.kindOfApartment">
-    </div>
+    <form [formGroup]="offerForm" (ngSubmit)="addOffer()">
+      <label for="price">Cena</label>
+      <input type="number" name="price" step="0.01" [formControlName]="'price'" placeholder="cena w PLN">
+      <div>
+        <label for="standard">Rodzaj Standardu</label>
+        <select [(ngModel)]="newOffer.standard" name="standard">
+          <option value="WL">WL</option>
+          <option value="BB">BB</option>
+          <option value="HB">HB</option>
+          <option value="AllInclusive">AllInclusive</option>
+        </select>
+      </div>
+      <div>
+        <label for="apartment">Rodzaj Pokoju </label>
+        <input type="text" name="apartment" [formControlName]="'apartment'">
+      </div>
 
-    <div>
-      <label for="nameHotel">Nazwa hotelu </label>
-      <input type="text" name="nameHotel" [(ngModel)]="newOffer.hotelName">
-    </div>
-    <div>
-      <label for="countryHotel">Kraj hotelu </label>
-      <input type="text" name="countryHotel" [(ngModel)]="newOffer.hotelCountry">
-    </div>
-    <div>
-      <label for="cityHotel">Miasto hotelu </label>
-      <input type="text" name="cityHotel" [(ngModel)]="newOffer.hotelCity">
-    </div>
+      <div>
+        <label for="nameHotel">Nazwa hotelu </label>
+        <input type="text" name="nameHotel" [formControlName]="'nameHotel'">
+      </div>
+      <div>
+        <label for="countryHotel">Kraj hotelu </label>
+        <input type="text" name="countryHotel" [formControlName]="'countryHotel'">
+      </div>
+      <div>
+        <label for="cityHotel">Miasto hotelu </label>
+        <input type="text" name="cityHotel" [formControlName]="'cityHotel'">
+      </div>
 
-    <div>
-      <label for="depAirport">Lotnisko odlotu </label>
-      <input type="text" name="depAirport" [(ngModel)]="newOffer.departureAirport">
-    </div>
-    <div>
-      <label for="depCountry">Kraj lotniska odlotu </label>
-      <input type="text" name="depCountry" [(ngModel)]="newOffer.departureCountry">
-    </div>
-    <div>
-      <label for="depDate">Data odlotu </label>
-      <input type="date" name="depDate" [(ngModel)]="newOffer.departureDate">
-    </div>
-    <div>
-      <label for="depTime">Czas odlotu </label>
-      <input type="time" name="depTime" [(ngModel)]="departureTime">
-    </div>
+      <div>
+        <label for="depAirport">Lotnisko odlotu </label>
+        <input type="text" name="depAirport" [formControlName]="'depAirport'">
+      </div>
+      <div>
+        <label for="depCountry">Kraj lotniska odlotu </label>
+        <input type="text" name="depCountry" [formControlName]="'depCountry'">
+      </div>
+      <div>
+        <label for="depDate">Data odlotu </label>
+        <input type="date" name="depDate" [formControlName]="'depDate'">
+      </div>
+      <div>
+        <label for="depTime">Czas odlotu </label>
+        <input type="time" name="depTime" [(ngModel)]="departureTime">
+      </div>
 
-    <div>
-      <label for="arrAirport">Lotnisko przylotu </label>
-      <input type="text" name="arrAirport" [(ngModel)]="newOffer.arrivalAirport">
-    </div>
-    <div>
-      <label for="arrCountry">Kraj lotnika przylotu </label>
-      <input type="text" name="arrCountry" [(ngModel)]="newOffer.arrivalCountry">
-    </div>
-    <div>
-      <label for="arrDate">Data przylotu</label>
-      <input type="date" name="arrDate" [(ngModel)]="newOffer.arrivalDate">
-    </div>
-    <div>
-      <label for="arrTime">Czas przylotu </label>
-      <input type="time" name="arrTime" [(ngModel)]="arrivalTime">
-    </div>
+      <div>
+        <label for="arrAirport">Lotnisko przylotu </label>
+        <input type="text" name="arrAirport" [formControlName]="'arrAirport'">
+      </div>
+      <div>
+        <label for="arrCountry">Kraj lotnika przylotu </label>
+        <input type="text" name="arrCountry" [formControlName]="'arrCountry'">
+      </div>
+      <div>
+        <label for="arrDate">Data przylotu</label>
+        <input type="date" name="arrDate" [formControlName]="'arrDate'">
+      </div>
+      <div>
+        <label for="arrTime">Czas przylotu </label>
+        <input type="time" name="arrTime" [(ngModel)]="arrivalTime">
+      </div>
 
-    <div>
-      <label for="cost">Koszt lotu </label>
-      <input type="number" name="cost" step="0.01" [(ngModel)]="newOffer.flightCost">
-    </div>
-    <div style="text-align: right;">
-      <button class="btn-nav" (click)="addOffer()">Dodaj Ofertę</button>
-    </div>
+      <div>
+        <label for="cost">Koszt lotu </label>
+        <input type="number" name="cost" step="0.01" [formControlName]="'cost'">
+      </div>
+      <div style="text-align: right;">
+        <button class="btn-nav" type="submit" [disabled]="offerForm.invalid">Dodaj Ofertę</button>
+      </div>
+    </form>
   </div>
 </div>

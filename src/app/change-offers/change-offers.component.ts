@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { OfferInput } from './../offer/model/offer-input';
 import { OfferService } from './../services/offer.service';
@@ -30,12 +31,14 @@ export class ChangeOffersComponent implements OnInit {
     flightCost: 0
   };
   searchOffer: string;
+  offerForm: FormGroup;
 
   constructor(private offerService: OfferService) { }
 
   ngOnInit(): void {
     this.offerService.getOffers()
       .subscribe(offers => this.offers = offers);
+    this.createOfferForm();
   }
 
   deleteOffer(offerId: number) {
@@ -46,6 +49,7 @@ export class ChangeOffersComponent implements OnInit {
 
   addOffer() {
     this.mapDates();
+    this.createNewOffer();
     this.offerService.addOffer(this.newOffer).subscribe(res => {
       location.reload();
     });
@@ -58,5 +62,37 @@ export class ChangeOffersComponent implements OnInit {
     date = this.newOffer.arrivalDate;
     this.newOffer.arrivalDate = date.slice(8, 10) + date.slice(4, 8) + date.slice(0, 4) + ' ' + this.arrivalTime + ':00';
     console.log('arrivalDate ' + this.newOffer.arrivalDate);
+  }
+
+  private createOfferForm(): void {
+    this.offerForm = new FormGroup({
+      price: new FormControl('', [Validators.required, Validators.min(0)]),
+      apartment: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      nameHotel: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      countryHotel: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      cityHotel: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      depAirport: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      depCountry: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      depDate: new FormControl('', [Validators.required]),
+      arrAirport: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      arrCountry: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      arrDate: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      cost: new FormControl('', [Validators.required, Validators.min(0)])
+    });
+  }
+
+  private createNewOffer(): void {
+    this.newOffer.price = this.offerForm.get('price').value;
+    this.newOffer.kindOfApartment = this.offerForm.get('apartment').value;
+    this.newOffer.hotelName = this.offerForm.get('nameHotel').value;
+    this.newOffer.hotelCountry = this.offerForm.get('countryHotel').value;
+    this.newOffer.hotelCity = this.offerForm.get('cityHotel').value;
+    this.newOffer.departureAirport = this.offerForm.get('depAirport').value;
+    this.newOffer.departureCountry = this.offerForm.get('depCountry').value;
+    this.newOffer.departureDate = this.offerForm.get('depDate').value;
+    this.newOffer.arrivalAirport = this.offerForm.get('arrAirport').value;
+    this.newOffer.arrivalCountry = this.offerForm.get('arrCountry').value;
+    this.newOffer.arrivalDate = this.offerForm.get('arrDate').value;
+    this.newOffer.flightCost = this.offerForm.get('cost').value;
   }
 }
