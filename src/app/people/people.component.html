@@ -1,11 +1,7 @@
 <div>
   <ul>
     <h1>Osoby </h1>
-    <nav>
-      <a routerLink="/offers"><button class="btn-nav">Oferty</button></a>
-      <a routerLink="/change-offers"><button class="btn-nav">Zarządzaj Ofertami</button></a>
-      <a routerLink="/trips"><button class="btn-nav">Zarządzaj Wycieczkami</button></a>
-    </nav>
+    <app-nav-bar></app-nav-bar>
     <div>
       <input type="text" name="search" class="search" [(ngModel)]="searchPerson" placeholder="Wyszukaj">
     </div>

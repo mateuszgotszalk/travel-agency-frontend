@@ -15,25 +15,27 @@ export class ChangeOffersComponent implements OnInit {
   offers: Offer[];
   departureTime: string;
   arrivalTime: string;
-  newOffer: OfferInput = {
-    price: 0,
-    standard: Standard.WL,
-    kindOfApartment: '',
-    hotelName: '',
-    hotelCountry: '',
-    hotelCity: '',
-    departureAirport: '',
-    departureCountry: '',
-    departureDate: '',
-    arrivalAirport: '',
-    arrivalCountry: '',
-    arrivalDate: '',
-    flightCost: 0
-  };
+  newOffer: OfferInput;
   searchOffer: string;
   offerForm: FormGroup;
 
-  constructor(private offerService: OfferService) { }
+  constructor(private offerService: OfferService) {
+    this.newOffer = {
+      price: 0,
+      standard: Standard.WL,
+      kindOfApartment: '',
+      hotelName: '',
+      hotelCountry: '',
+      hotelCity: '',
+      departureAirport: '',
+      departureCountry: '',
+      departureDate: '',
+      arrivalAirport: '',
+      arrivalCountry: '',
+      arrivalDate: '',
+      flightCost: 0
+    };
+   }
 
   ngOnInit(): void {
     this.offerService.getOffers()

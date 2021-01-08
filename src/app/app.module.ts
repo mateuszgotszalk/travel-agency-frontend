@@ -14,6 +14,10 @@ import { FilterPipe } from './filter.pipe';
 import { FilterPersonPipe } from './filter-person.pipe';
 import { FilterTripPipe } from './filter-trip.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { SignupComponent } from './auth/signup/signup.component';
+import { LoginComponent } from './auth/login/login.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
+import { NavBarComponent } from './nav/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -26,14 +30,18 @@ import { HttpClientModule } from '@angular/common/http';
     PeopleComponent,
     FilterPipe,
     FilterPersonPipe,
-    FilterTripPipe
+    FilterTripPipe,
+    SignupComponent,
+    LoginComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxWebstorageModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

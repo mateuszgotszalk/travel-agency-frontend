@@ -1,3 +1,4 @@
+import { SignupComponent } from './auth/signup/signup.component';
 import { PeopleComponent } from './people/people.component';
 import { TripManagementComponent } from './trip-management/trip-management.component';
 import { TripComponent } from './trip/trip.component';
@@ -6,6 +7,7 @@ import { OfferComponent } from './offer/offer.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ChangeOffersComponent } from './change-offers/change-offers.component';
+import { LoginComponent } from './auth/login/login.component';
 
 
 const routes: Routes = [
@@ -15,7 +17,9 @@ const routes: Routes = [
   { path: 'create-trip', component: TripComponent },
   { path: 'change-offers', component: ChangeOffersComponent },
   { path: 'trips', component: TripManagementComponent },
-  { path: 'people', component: PeopleComponent }
+  { path: 'people', component: PeopleComponent },
+  { path: 'signup', component: SignupComponent},
+  { path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

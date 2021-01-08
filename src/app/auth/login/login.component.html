@@ -1,0 +1,29 @@
+<div class="signup-form">
+  <h3 style="text-align: center"> Logowanie</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+    <div class="inputs">
+      <label for="userName">Nazwa uzytkownika</label>
+      <input type="text" name="userName" [formControlName]="'userName'">
+      <span class="invalid-text" *ngIf="loginForm.get('userName').invalid && loginForm.get('userName').touched">
+        Wprowadź poprawne nazwę uzytkownika (pole wymagane)
+      </span>
+    </div>
+
+    <div class="inputs">
+      <label for="">Hasło</label>
+      <input type="password" [formControlName]="'password'">
+      <span class="invalid-text" *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+        Hasło wymagane
+      </span>
+    </div>
+
+    <div style="text-align: center;">
+      <button class="btn-nav" type="submit">Zaloguj się</button>
+    </div>
+
+    <div style="text-align: center;">
+      <span *ngIf="isLoged">Zalogowałeś się</span>
+    </div>
+  </form>
+</div>

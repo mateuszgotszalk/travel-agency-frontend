@@ -1,10 +1,6 @@
 <div>
   <h1>Wycieczki </h1>
-  <nav>
-    <a routerLink="/offers"><button class="btn-nav">Oferty</button></a>
-    <a routerLink="/change-offers"><button class="btn-nav">Zarządzaj Ofertami</button></a>
-    <a routerLink="/people"><button class="btn-nav">Zarządzaj Osobami</button></a>
-  </nav>
+  <app-nav-bar></app-nav-bar>
   <div>
     <input type="text" name="search" class="search" [(ngModel)]="searchTrip" placeholder="Wyszukaj">
   </div>

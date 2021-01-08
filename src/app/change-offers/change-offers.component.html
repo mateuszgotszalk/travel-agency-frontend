@@ -1,10 +1,6 @@
 <div>
   <h1>Oferty </h1>
-  <nav>
-    <a routerLink="/offers"><button class="btn-nav">Oferty</button></a>
-    <a routerLink="/trips"><button class="btn-nav">Zarządzaj Wycieczkami</button></a>
-    <a routerLink="/people"><button class="btn-nav">Zarządzaj Osobami</button></a>
-  </nav>
+  <app-nav-bar></app-nav-bar>
   <div>
     <input type="text" name="search" class="search" style="margin-top: 10px;" [(ngModel)]="searchOffer"
       placeholder="Wyszukaj">
@@ -49,7 +45,7 @@
       <input type="number" name="price" step="0.01" [formControlName]="'price'" placeholder="cena w PLN">
       <div>
         <label for="standard">Rodzaj Standardu</label>
-        <select [(ngModel)]="newOffer.standard" name="standard">
+        <select [(ngModel)]="newOffer.standard" name="standard" [ngModelOptions]="{standalone: true}">
           <option value="WL">WL</option>
           <option value="BB">BB</option>
           <option value="HB">HB</option>
@@ -88,7 +84,7 @@
       </div>
       <div>
         <label for="depTime">Czas odlotu </label>
-        <input type="time" name="depTime" [(ngModel)]="departureTime">
+        <input type="time" name="depTime" [(ngModel)]="departureTime" [ngModelOptions]="{standalone: true}">
       </div>
 
       <div>
@@ -105,7 +101,7 @@
       </div>
       <div>
         <label for="arrTime">Czas przylotu </label>
-        <input type="time" name="arrTime" [(ngModel)]="arrivalTime">
+        <input type="time" name="arrTime" [(ngModel)]="arrivalTime" [ngModelOptions]="{standalone: true}">
       </div>
 
       <div>
